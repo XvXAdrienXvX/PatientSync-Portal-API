@@ -1,0 +1,6 @@
+@PatientSync.API_HostAddress = http://localhost:5090
+
+GET {{PatientSync.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

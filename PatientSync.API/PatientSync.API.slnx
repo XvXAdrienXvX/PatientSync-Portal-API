@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution>
+  <Folder Name="/Modules/" />
+  <Folder Name="/Modules/Authentication/">
+    <Project Path="../Modules/Authentication/Authentication.Contracts/Authentication.Contracts.csproj" />
+    <Project Path="../Modules/Authentication/Authentication.Module/Authentication.Module.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Doctor/">
+    <Project Path="../Modules/Doctor/Doctor.Contracts/Doctor.Contracts.csproj" />
+    <Project Path="../Modules/Doctor/Doctor.Module/Doctor.Module.csproj" />
+  </Folder>
+  <Project Path="PatientSync.API.csproj" />
+  <Folder Name="/Modules/Patients/">
+    <Project Path="../Modules/Patients/Patients.Contracts/Patients.Contracts.csproj" />
+    <Project Path="../Modules/Patients/Patients.Module/Patients.Module.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Messaging/">
+    <Project Path="../Modules/Messaging/Messaging.Contracts/Messaging.Contracts.csproj" />
+    <Project Path="../Modules/Messaging/Messaging.Module/Messaging.Module.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Appointments/">
+    <Project Path="../Modules/Appointments/Appointments.Contracts/Appointments.Contracts.csproj" />
+    <Project Path="../Modules/Appointments/Appointments.Module/Appointments.Module.csproj" />
+  </Folder>
+</Solution>

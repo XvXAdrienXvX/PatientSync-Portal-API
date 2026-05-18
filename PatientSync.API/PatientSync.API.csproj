@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.6" />
+    <ProjectReference Include="../Modules/Doctor/Doctor.Module/Doctor.Module.csproj" />
+    <ProjectReference Include="../Modules/Patients/Patients.Module/Patients.Module.csproj" />
+    <ProjectReference Include="../Modules/Messaging/Messaging.Module/Messaging.Module.csproj" />
+    <ProjectReference Include="../Modules/Appointments/Appointments.Module/Appointments.Module.csproj" />
+  </ItemGroup>
+</Project>
