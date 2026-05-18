@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Doctor.Module.Domain;
 
-public class Doctor
+public class Doctors
 {
     public Guid Id { get; internal set; }
     public Guid UserId { get; internal set; }
@@ -18,7 +14,7 @@ public class Doctor
     public DateTime CreatedAt { get; internal set; }
     public DateTime UpdatedAt { get; internal set; }
 
-    public static Doctor Create(
+    public static Doctors Create(
         Guid userId,
         string email,
         string firstName,
@@ -28,7 +24,7 @@ public class Doctor
         IEnumerable<DoctorAvailability> availability)
     {
         var now = DateTime.UtcNow;
-        return new Doctor
+        return new Doctors
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -44,7 +40,7 @@ public class Doctor
         };
     }
 
-    internal static Doctor Rehydrate(
+    internal static Doctors Rehydrate(
         Guid id,
         Guid userId,
         string email,
@@ -57,7 +53,7 @@ public class Doctor
         DateTime createdAt,
         DateTime updatedAt)
     {
-        return new Doctor
+        return new Doctors
         {
             Id = id,
             UserId = userId,
