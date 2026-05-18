@@ -1,38 +1,18 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace Patients.Module.Domain;
 
 public class Patient
 {
-    [BsonId]
-    [BsonElement("_id")]
-    public Guid Id { get; private set; }
+    public Guid Id { get; internal set; }
+    public Guid UserId { get; internal set; }
+    public DateTime DateOfBirth { get; internal set; }
+    public string Status { get; internal set; } = "active";
+    public Guid? DoctorId { get; internal set; }
+    public DateTime CreatedAt { get; internal set; }
+    public DateTime UpdatedAt { get; internal set; }
 
-    [BsonElement("userId")]
-    public Guid UserId { get; private set; }
-
-    [BsonElement("dateOfBirth")]
-    public DateTime DateOfBirth { get; private set; }
-
-    [BsonElement("status")]
-    public string Status { get; private set; } = "active";
-
-    [BsonElement("doctorId")]
-    public Guid? DoctorId { get; private set; }
-
-    [BsonElement("createdAt")]
-    public DateTime CreatedAt { get; private set; }
-
-    [BsonElement("updatedAt")]
-    public DateTime UpdatedAt { get; private set; }
-
-    public static Patient Create(
-        Guid id,
-        Guid userId,
-        DateTime dateOfBirth,
-        string? phone,
-        Guid? doctorId)
+    public static Patient Create(Guid id, Guid userId, DateTime dateOfBirth, Guid? doctorId = null)
     {
         var now = DateTime.UtcNow;
         return new Patient
@@ -44,6 +24,27 @@ public class Patient
             Status = "active",
             CreatedAt = now,
             UpdatedAt = now
+        };
+    }
+
+    internal static Patient Rehydrate(
+        Guid id,
+        Guid userId,
+        DateTime dateOfBirth,
+        string status,
+        Guid? doctorId,
+        DateTime createdAt,
+        DateTime updatedAt)
+    {
+        return new Patient
+        {
+            Id = id,
+            UserId = userId,
+            DateOfBirth = dateOfBirth,
+            Status = status,
+            DoctorId = doctorId,
+            CreatedAt = createdAt,
+            UpdatedAt = updatedAt
         };
     }
 }

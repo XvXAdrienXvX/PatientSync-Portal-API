@@ -1,37 +1,18 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace Authentication.Module.Domain;
 
 public class Users
 {
-    [BsonId]
-    [BsonElement("_id")]
-    public Guid Id { get; private set; }
-
-    [BsonElement("email")]
-    public string Email { get; private set; } = default!;
-
-    [BsonElement("passwordHash")]
-    public string PasswordHash { get; private set; } = default!;
-
-    [BsonElement("role")]
-    public string Role { get; private set; } = default!;
-
-    [BsonElement("firstName")]
-    public string FirstName { get; private set; } = default!;
-
-    [BsonElement("lastName")]
-    public string LastName { get; private set; } = default!;
-
-    [BsonElement("status")]
-    public string Status { get; private set; } = default!;
-
-    [BsonElement("createdAt")]
-    public DateTime CreatedAt { get; private set; }
-
-    [BsonElement("updatedAt")]
-    public DateTime UpdatedAt { get; private set; }
+    public Guid Id { get; internal set; }
+    public string Email { get; internal set; } = default!;
+    public string PasswordHash { get; internal set; } = default!;
+    public string Role { get; internal set; } = default!;
+    public string FirstName { get; internal set; } = default!;
+    public string LastName { get; internal set; } = default!;
+    public string Status { get; internal set; } = default!;
+    public DateTime CreatedAt { get; internal set; }
+    public DateTime UpdatedAt { get; internal set; }
 
     public static Users Create(
         Guid id,
@@ -54,6 +35,31 @@ public class Users
             Status = status.Trim().ToLowerInvariant(),
             CreatedAt = now,
             UpdatedAt = now
+        };
+    }
+
+    internal static Users Rehydrate(
+        Guid id,
+        string email,
+        string passwordHash,
+        string role,
+        string firstName,
+        string lastName,
+        string status,
+        DateTime createdAt,
+        DateTime updatedAt)
+    {
+        return new Users
+        {
+            Id = id,
+            Email = email,
+            PasswordHash = passwordHash,
+            Role = role,
+            FirstName = firstName,
+            LastName = lastName,
+            Status = status,
+            CreatedAt = createdAt,
+            UpdatedAt = updatedAt
         };
     }
 

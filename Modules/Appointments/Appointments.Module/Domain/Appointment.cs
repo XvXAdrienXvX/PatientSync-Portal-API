@@ -1,49 +1,22 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace Appointments.Module.Domain;
 
 public class Appointment
 {
-    [BsonId]
-    [BsonElement("_id")]
-    public Guid Id { get; private set; }
-
-    [BsonElement("patientId")]
-    public Guid PatientId { get; private set; }
-
-    [BsonElement("doctorId")]
-    public Guid DoctorId { get; private set; }
-
-    [BsonElement("scheduledAt")]
-    public DateTime ScheduledAt { get; private set; }
-
-    [BsonElement("duration")]
-    public int Duration { get; private set; }
-
-    [BsonElement("chiefComplaint")]
-    public string ChiefComplaint { get; private set; } = null!;
-
-    [BsonElement("status")]
-    public string Status { get; private set; } = "scheduled";
-
-    [BsonElement("visitNotes")]
-    public VisitNotes? VisitNotes { get; private set; }
-
-    [BsonElement("cancelledAt")]
-    public DateTime? CancelledAt { get; private set; }
-
-    [BsonElement("cancelledBy")]
-    public string? CancelledBy { get; private set; }
-
-    [BsonElement("cancellationReason")]
-    public string? CancellationReason { get; private set; }
-
-    [BsonElement("createdAt")]
-    public DateTime CreatedAt { get; private set; }
-
-    [BsonElement("updatedAt")]
-    public DateTime UpdatedAt { get; private set; }
+    public Guid Id { get; internal set; }
+    public Guid PatientId { get; internal set; }
+    public Guid DoctorId { get; internal set; }
+    public DateTime ScheduledAt { get; internal set; }
+    public int Duration { get; internal set; }
+    public string ChiefComplaint { get; internal set; } = null!;
+    public string Status { get; internal set; } = "scheduled";
+    public VisitNotes? VisitNotes { get; internal set; }
+    public DateTime? CancelledAt { get; internal set; }
+    public string? CancelledBy { get; internal set; }
+    public string? CancellationReason { get; internal set; }
+    public DateTime CreatedAt { get; internal set; }
+    public DateTime UpdatedAt { get; internal set; }
 
     public static Appointment Schedule(
         Guid patientId,
@@ -64,6 +37,39 @@ public class Appointment
             Status = "scheduled",
             CreatedAt = now,
             UpdatedAt = now
+        };
+    }
+
+    internal static Appointment Rehydrate(
+        Guid id,
+        Guid patientId,
+        Guid doctorId,
+        DateTime scheduledAt,
+        int duration,
+        string chiefComplaint,
+        string status,
+        VisitNotes? visitNotes,
+        DateTime? cancelledAt,
+        string? cancelledBy,
+        string? cancellationReason,
+        DateTime createdAt,
+        DateTime updatedAt)
+    {
+        return new Appointment
+        {
+            Id = id,
+            PatientId = patientId,
+            DoctorId = doctorId,
+            ScheduledAt = scheduledAt,
+            Duration = duration,
+            ChiefComplaint = chiefComplaint,
+            Status = status,
+            VisitNotes = visitNotes,
+            CancelledAt = cancelledAt,
+            CancelledBy = cancelledBy,
+            CancellationReason = cancellationReason,
+            CreatedAt = createdAt,
+            UpdatedAt = updatedAt
         };
     }
 
