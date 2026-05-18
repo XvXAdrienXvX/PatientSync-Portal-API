@@ -1,0 +1,25 @@
+# Ignore Visual Studio and .NET build output
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.pdb
+*.cache
+*.log
+*.vspscc
+*.vssscc
+*.dbmdl
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NuGet packages
+**/[Pp]ackages/*
+
+# Rider
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

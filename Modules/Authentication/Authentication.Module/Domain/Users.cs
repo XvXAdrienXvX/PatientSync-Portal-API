@@ -7,7 +7,6 @@ public class Users
 {
     [BsonId]
     [BsonElement("_id")]
-    [BsonRepresentation(BsonType.String)]
     public Guid Id { get; private set; }
 
     [BsonElement("email")]
@@ -61,41 +60,41 @@ public class Users
     public void SetEmail(string newEmail)
     {
         Email = newEmail.Trim();
-        MarkUpdated();
+        MarkAsUpdated();
     }
 
     public void SetNewPassword(string newPasswordHash)
     {
         PasswordHash = newPasswordHash;
-        MarkUpdated();
+        MarkAsUpdated();
     }
 
     public void SetRole(string newRole)
     {
         Role = newRole.Trim().ToLowerInvariant();
-        MarkUpdated();
+        MarkAsUpdated();
     }
 
     public void SetName(string firstName, string lastName)
     {
         FirstName = firstName.Trim();
         LastName = lastName.Trim();
-        MarkUpdated();
+        MarkAsUpdated();
     }
 
     public void SetStatusActive()
     {
         Status = "active";
-        MarkUpdated();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void SetStatusInactive()
     {
         Status = "inactive";
-        MarkUpdated();
+        MarkAsUpdated();
     }
 
-    public void MarkUpdated()
+    public void MarkAsUpdated()
     {
        UpdatedAt = DateTime.UtcNow;
     }

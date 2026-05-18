@@ -13,4 +13,8 @@
 		<Folder Include="Domain\" />
 		<Folder Include="Infrastructure\" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="MongoDB.Bson" Version="3.8.1" />
+	</ItemGroup>
 </Project>
