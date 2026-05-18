@@ -7,9 +7,11 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.7" />
     <ProjectReference Include="../Modules/Doctor/Doctor.Module/Doctor.Module.csproj" />
     <ProjectReference Include="../Modules/Patients/Patients.Module/Patients.Module.csproj" />
     <ProjectReference Include="../Modules/Messaging/Messaging.Module/Messaging.Module.csproj" />
     <ProjectReference Include="../Modules/Appointments/Appointments.Module/Appointments.Module.csproj" />
+    <ProjectReference Include="..\Modules\Authentication\Authentication.Module\Authentication.Module.csproj" />
   </ItemGroup>
 </Project>

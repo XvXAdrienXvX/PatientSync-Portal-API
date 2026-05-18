@@ -8,7 +8,6 @@
 
 <ItemGroup>
 	<Folder Include="Domain\" />
-	<Folder Include="Features\" />
 </ItemGroup>
 
 <ItemGroup>
@@ -16,7 +15,10 @@
 </ItemGroup>
 
 <ItemGroup>
-  <PackageReference Include="FastApi" Version="1.0.71" />
+  <PackageReference Include="FastEndpoints" Version="8.0.0" />
+  <PackageReference Include="FastEndpoints.Attributes" Version="8.1.0" />
+  <PackageReference Include="MediatR" Version="14.1.0" />
+  <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
   <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.8" />
   <PackageReference Include="MongoDB.Bson" Version="3.8.1" />
   <PackageReference Include="MongoDB.Driver" Version="3.8.1" />
