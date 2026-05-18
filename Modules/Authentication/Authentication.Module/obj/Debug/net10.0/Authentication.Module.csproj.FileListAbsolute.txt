@@ -1,0 +1,12 @@
+C:\Dev\PatientSync-Portal-API\Modules\Authentication\Authentication.Module\bin\Debug\net10.0\Authentication.Module.deps.json
+C:\Dev\PatientSync-Portal-API\Modules\Authentication\Authentication.Module\bin\Debug\net10.0\Authentication.Module.dll
+C:\Dev\PatientSync-Portal-API\Modules\Authentication\Authentication.Module\bin\Debug\net10.0\Authentication.Module.pdb
+C:\Dev\PatientSync-Portal-API\Modules\Authentication\Authentication.Module\obj\Debug\net10.0\Authentication.Module.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\PatientSync-Portal-API\Modules\Authentication\Authentication.Module\obj\Debug\net10.0\Authentication.Module.AssemblyInfoInputs.cache
+C:\Dev\PatientSync-Portal-API\Modules\Authentication\Authentication.Module\obj\Debug\net10.0\Authentication.Module.AssemblyInfo.cs
+C:\Dev\PatientSync-Portal-API\Modules\Authentication\Authentication.Module\obj\Debug\net10.0\Authentication.Module.csproj.CoreCompileInputs.cache
+C:\Dev\PatientSync-Portal-API\Modules\Authentication\Authentication.Module\obj\Debug\net10.0\Authentication.Module.dll
+C:\Dev\PatientSync-Portal-API\Modules\Authentication\Authentication.Module\obj\Debug\net10.0\refint\Authentication.Module.dll
+C:\Dev\PatientSync-Portal-API\Modules\Authentication\Authentication.Module\obj\Debug\net10.0\Authentication.Module.pdb
+C:\Dev\PatientSync-Portal-API\Modules\Authentication\Authentication.Module\obj\Debug\net10.0\ref\Authentication.Module.dll
+C:\Dev\PatientSync-Portal-API\Modules\Authentication\Authentication.Module\obj\Debug\net10.0\Authentication.Module.csproj.AssemblyReference.cache

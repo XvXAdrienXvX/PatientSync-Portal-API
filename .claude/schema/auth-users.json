@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Users",
+  "type": "object",
+  "description": "MongoDB auth.users collection schema for PatientSync authentication module.",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "format": "objectId",
+      "description": "MongoDB ObjectId for the user document."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Unique user email address."
+    },
+    "passwordHash": {
+      "type": "string",
+      "description": "Bcrypt hash of the user password."
+    },
+    "role": {
+      "type": "string",
+      "enum": ["patient", "doctor", "admin"],
+      "description": "Role assigned to the user."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "User first name."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "User last name."
+    },
+    "lastLoginAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp of the user's last login."
+    },
+    "loginCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of successful logins."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "suspended"],
+      "description": "Current account status."
+    },
+    "emailVerified": {
+      "type": "boolean",
+      "description": "Whether the user's email address has been verified."
+    },
+    "emailVerifiedAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when the email was verified."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Document creation timestamp."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Document last update timestamp."
+    }
+  },
+  "required": [
+    "_id",
+    "email",
+    "passwordHash",
+    "role",
+    "firstName",
+    "lastName",
+    "status",
+    "emailVerified",
+    "createdAt",
+    "updatedAt"
+  ],
+  "additionalProperties": false
+}

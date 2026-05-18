@@ -1,0 +1,15 @@
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\bin\Debug\net10.0\Appointments.Module.deps.json
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\bin\Debug\net10.0\Appointments.Module.dll
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\bin\Debug\net10.0\Appointments.Module.pdb
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\bin\Debug\net10.0\Appointments.Contracts.dll
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\bin\Debug\net10.0\Appointments.Contracts.pdb
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\obj\Debug\net10.0\Appointments.Module.csproj.AssemblyReference.cache
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\obj\Debug\net10.0\Appointments.Module.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\obj\Debug\net10.0\Appointments.Module.AssemblyInfoInputs.cache
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\obj\Debug\net10.0\Appointments.Module.AssemblyInfo.cs
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\obj\Debug\net10.0\Appointments.Module.csproj.CoreCompileInputs.cache
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\obj\Debug\net10.0\Appointm.6358DCB7.Up2Date
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\obj\Debug\net10.0\Appointments.Module.dll
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\obj\Debug\net10.0\refint\Appointments.Module.dll
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\obj\Debug\net10.0\Appointments.Module.pdb
+C:\Dev\PatientSync-Portal-API\Modules\Appointments\Appointments.Module\obj\Debug\net10.0\ref\Appointments.Module.dll

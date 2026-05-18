@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(\\(Get-ChildItem -Path \"C:\\\\Dev\\\\PatientSync-Portal-API\" 2>&1\\) | ConvertTo-Json)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Dev\\\\PatientSync-Portal-API\\\\src\\\\Modules\" -Filter \"Authentication\" -ErrorAction SilentlyContinue)",
+      "Bash(Select-Object Name)",
+      "Bash(Test-Path C:\\\\Dev\\\\PatientSync-Portal-API\\\\Modules\\\\Authentication *)",
+      "Bash(dotnet script *)",
+      "Bash(dotnet tool *)",
+      "PowerShell(dotnet script *)",
+      "Skill(scaffold-module)"
+    ]
+  }
+}
