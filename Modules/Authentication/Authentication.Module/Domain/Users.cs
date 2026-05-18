@@ -60,26 +60,26 @@ public class Users
     public void SetEmail(string newEmail)
     {
         Email = newEmail.Trim();
-        MarkAsUpdated();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void SetNewPassword(string newPasswordHash)
     {
         PasswordHash = newPasswordHash;
-        MarkAsUpdated();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void SetRole(string newRole)
     {
         Role = newRole.Trim().ToLowerInvariant();
-        MarkAsUpdated();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void SetName(string firstName, string lastName)
     {
         FirstName = firstName.Trim();
         LastName = lastName.Trim();
-        MarkAsUpdated();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void SetStatusActive()
@@ -91,12 +91,7 @@ public class Users
     public void SetStatusInactive()
     {
         Status = "inactive";
-        MarkAsUpdated();
-    }
-
-    public void MarkAsUpdated()
-    {
-       UpdatedAt = DateTime.UtcNow;
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public string FullName => $"{FirstName} {LastName}";

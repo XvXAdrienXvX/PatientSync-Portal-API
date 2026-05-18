@@ -6,26 +6,14 @@ namespace Doctor.Module.Domain;
 public class Doctor
 {
     [BsonId]
-    public ObjectId Id { get; private set; }
+    [BsonElement("_id")]
+    public Guid Id { get; private set; }
 
     [BsonElement("userId")]
-    [BsonRepresentation(BsonType.String)]
     public Guid UserId { get; private set; }
-
-    [BsonElement("email")]
-    public string Email { get; private set; } = null!;
-
-    [BsonElement("firstName")]
-    public string FirstName { get; private set; } = null!;
-
-    [BsonElement("lastName")]
-    public string LastName { get; private set; } = default!;
 
     [BsonElement("specialization")]
     public string Specialization { get; private set; } = null!;
-
-    [BsonElement("licenseNumber")]
-    public string LicenseNumber { get; private set; } = null!;
 
     [BsonElement("availability")]
     public List<DoctorAvailability> Availability { get; private set; } = new();
@@ -51,13 +39,9 @@ public class Doctor
         var now = DateTime.UtcNow;
         return new Doctor
         {
-            Id = ObjectId.GenerateNewId(),
+            Id = Guid.NewGuid(),
             UserId = userId,
-            Email = email.Trim(),
-            FirstName = firstName.Trim(),
-            LastName = lastName.Trim(),
             Specialization = specialization.Trim(),
-            LicenseNumber = licenseNumber.Trim(),
             Availability = availability.Select(a => a).ToList(),
             Status = "active",
             CreatedAt = now,
@@ -65,47 +49,27 @@ public class Doctor
         };
     }
 
-    public void UpdateProfile(string email, string firstName, string lastName, string specialization)
-    {
-        Email = email.Trim();
-        FirstName = firstName.Trim();
-        LastName = lastName.Trim();
-        Specialization = specialization.Trim();
-        Touch();
-    }
-
-    public void SetLicenseNumber(string licenseNumber)
-    {
-        LicenseNumber = licenseNumber.Trim();
-        Touch();
-    }
-
     public void SetAvailability(IEnumerable<DoctorAvailability> availability)
     {
         Availability = availability.Select(a => a).ToList();
-        Touch();
+        UpdatedAt = DateTime.UtcNow;
     }
 
-    public void Activate()
+    public void SetActive()
     {
         Status = "active";
-        Touch();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void SetOnLeave()
     {
-        Status = "on-leave";
-        Touch();
+        Status = "onleave";
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void Deactivate()
     {
         Status = "inactive";
-        Touch();
-    }
-
-    private void Touch()
-    {
         UpdatedAt = DateTime.UtcNow;
     }
 }

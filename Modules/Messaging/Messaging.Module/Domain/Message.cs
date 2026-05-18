@@ -6,13 +6,14 @@ namespace Messaging.Module.Domain;
 public class Message
 {
     [BsonId]
-    public ObjectId Id { get; private set; }
+    [BsonElement("_id")]
+    public Guid Id { get; private set; }
 
     [BsonElement("senderId")]
-    public ObjectId SenderId { get; private set; }
+    public Guid SenderId { get; private set; }
 
     [BsonElement("recipientId")]
-    public ObjectId RecipientId { get; private set; }
+    public Guid RecipientId { get; private set; }
 
     [BsonElement("senderRole")]
     public string SenderRole { get; private set; } = null!;
@@ -42,8 +43,8 @@ public class Message
     public DateTime UpdatedAt { get; private set; }
 
     public static Message Create(
-        ObjectId senderId,
-        ObjectId recipientId,
+        Guid senderId,
+        Guid recipientId,
         string senderRole,
         string recipientRole,
         string content,
@@ -52,7 +53,7 @@ public class Message
         var now = DateTime.UtcNow;
         return new Message
         {
-            Id = ObjectId.GenerateNewId(),
+            Id = Guid.NewGuid(),
             SenderId = senderId,
             RecipientId = recipientId,
             SenderRole = senderRole.Trim(),
@@ -72,30 +73,25 @@ public class Message
         {
             Status = "read";
             ReadAt = DateTime.UtcNow;
-            Touch();
+            UpdatedAt = DateTime.UtcNow;
         }
     }
 
     public void Archive()
     {
         Status = "archived";
-        Touch();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void SoftDelete()
     {
         IsDeleted = true;
-        Touch();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void Restore()
     {
         IsDeleted = false;
-        Touch();
-    }
-
-    private void Touch()
-    {
         UpdatedAt = DateTime.UtcNow;
     }
 }

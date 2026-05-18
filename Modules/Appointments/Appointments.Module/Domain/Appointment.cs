@@ -6,13 +6,14 @@ namespace Appointments.Module.Domain;
 public class Appointment
 {
     [BsonId]
-    public ObjectId Id { get; private set; }
+    [BsonElement("_id")]
+    public Guid Id { get; private set; }
 
     [BsonElement("patientId")]
-    public ObjectId PatientId { get; private set; }
+    public Guid PatientId { get; private set; }
 
     [BsonElement("doctorId")]
-    public ObjectId DoctorId { get; private set; }
+    public Guid DoctorId { get; private set; }
 
     [BsonElement("scheduledAt")]
     public DateTime ScheduledAt { get; private set; }
@@ -45,8 +46,8 @@ public class Appointment
     public DateTime UpdatedAt { get; private set; }
 
     public static Appointment Schedule(
-        ObjectId patientId,
-        ObjectId doctorId,
+        Guid patientId,
+        Guid doctorId,
         DateTime scheduledAt,
         int duration,
         string chiefComplaint)
@@ -54,7 +55,7 @@ public class Appointment
         var now = DateTime.UtcNow;
         return new Appointment
         {
-            Id = ObjectId.GenerateNewId(),
+            Id = Guid.NewGuid(),
             PatientId = patientId,
             DoctorId = doctorId,
             ScheduledAt = scheduledAt,
@@ -74,7 +75,7 @@ public class Appointment
         }
 
         ScheduledAt = newScheduledAt;
-        Touch();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void Cancel(string cancelledBy, string cancellationReason)
@@ -88,7 +89,7 @@ public class Appointment
         CancelledAt = DateTime.UtcNow;
         CancelledBy = cancelledBy.Trim();
         CancellationReason = cancellationReason.Trim();
-        Touch();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void Complete(string assessment, string plan, DateTime? deniedAt = null)
@@ -100,17 +101,12 @@ public class Appointment
 
         Status = "completed";
         VisitNotes = new VisitNotes(assessment.Trim(), plan.Trim(), deniedAt);
-        Touch();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void AddOrUpdateVisitNotes(string assessment, string plan, DateTime? deniedAt = null)
     {
         VisitNotes = new VisitNotes(assessment.Trim(), plan.Trim(), deniedAt);
-        Touch();
-    }
-
-    private void Touch()
-    {
         UpdatedAt = DateTime.UtcNow;
     }
 }

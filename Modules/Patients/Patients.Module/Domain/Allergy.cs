@@ -6,6 +6,7 @@ namespace Patients.Module.Domain;
 public class Allergy
 {
     [BsonId]
+    [BsonElement("_id")]
     public Guid Id { get; private set; }
 
     [BsonElement("patientId")]
@@ -54,17 +55,12 @@ public class Allergy
     {
         ReactionType = reactionType.Trim();
         Severity = severity.Trim();
-        MarkAsUpdated();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void UpdateSubstance(string substance)
     {
         Substance = substance.Trim();
-        MarkAsUpdated();
-    }
-
-    private void MarkAsUpdated()
-    {
         UpdatedAt = DateTime.UtcNow;
     }
 }

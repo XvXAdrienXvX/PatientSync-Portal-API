@@ -6,6 +6,7 @@ namespace Patients.Module.Domain;
 public class Medication
 {
     [BsonId]
+    [BsonElement("_id")]
     public Guid Id { get; private set; }
 
     [BsonElement("patientId")]
@@ -66,31 +67,26 @@ public class Medication
     public void UpdateDosage(string dosage)
     {
         Dosage = dosage.Trim();
-        MarkAsUpdated();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void UpdateFrequency(string frequency)
     {
         Frequency = frequency.Trim();
-        MarkAsUpdated();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void End(DateTime endedDate)
     {
         EndedDate = endedDate;
         Status = "inactive";
-        MarkAsUpdated();
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void Reopen()
     {
         EndedDate = null;
         Status = "active";
-        MarkAsUpdated();
-    }
-
-    private void MarkAsUpdated()
-    {
         UpdatedAt = DateTime.UtcNow;
     }
 }
