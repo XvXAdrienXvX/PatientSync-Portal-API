@@ -1,5 +1,6 @@
 ﻿using Authentication.Contracts.Interfaces;
 using Authentication.Module.Features.GetUsers;
+using Authentication.Module.Features.Login;
 using Authentication.Module.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +13,7 @@ namespace Authentication.Module
             services.AddSingleton<IAuthenticationService, FakeAuthenticationService>();
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<GetUsersHandler>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<LoginHandler>());
 
             return services;
         }
