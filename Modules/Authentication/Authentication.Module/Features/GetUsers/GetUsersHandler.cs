@@ -1,4 +1,5 @@
 using Authentication.Contracts.Interfaces;
+using Authentication.Contracts.Queries;
 using MediatR;
 
 namespace Authentication.Module.Features.GetUsers;

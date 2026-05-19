@@ -1,3 +1,4 @@
+using Authentication.Contracts.Commands;
 using Authentication.Contracts.Interfaces;
 using MediatR;
 

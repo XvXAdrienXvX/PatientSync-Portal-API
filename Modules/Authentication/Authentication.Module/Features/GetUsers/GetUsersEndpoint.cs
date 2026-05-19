@@ -1,4 +1,5 @@
 using Authentication.Contracts.Interfaces;
+using Authentication.Contracts.Queries;
 using FastEndpoints;
 using MediatR;
 
