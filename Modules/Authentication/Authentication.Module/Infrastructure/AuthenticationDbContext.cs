@@ -1,4 +1,4 @@
-﻿using Authentication.Module.Domain;
+﻿using Authentication.Module.Infrastructure.Persistence;
 using MongoDB.Driver;
 
 namespace Authentication.Module.Infrastructure
@@ -8,6 +8,6 @@ namespace Authentication.Module.Infrastructure
         private readonly IMongoDatabase _db;
         public AuthenticationDbContext(IMongoDatabase db) => _db = db;
 
-        public IMongoCollection<Users> Users => _db.GetCollection<Users>("auth.users");
+        public IMongoCollection<UsersDO> Users => _db.GetCollection<UsersDO>("auth.users");
     }
 }

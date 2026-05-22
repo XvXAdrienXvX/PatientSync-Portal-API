@@ -1,33 +1,20 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
 namespace Doctor.Module.Domain;
 
-public class Doctor
+public class Doctors
 {
-    [BsonId]
-    [BsonElement("_id")]
-    public Guid Id { get; private set; }
+    public Guid Id { get; internal set; }
+    public Guid UserId { get; internal set; }
+    public string Email { get; internal set; } = null!;
+    public string FirstName { get; internal set; } = null!;
+    public string LastName { get; internal set; } = null!;
+    public string Specialization { get; internal set; } = null!;
+    public string LicenseNumber { get; internal set; } = null!;
+    public List<DoctorAvailability> Availability { get; internal set; } = new();
+    public string Status { get; internal set; } = "active";
+    public DateTime CreatedAt { get; internal set; }
+    public DateTime UpdatedAt { get; internal set; }
 
-    [BsonElement("userId")]
-    public Guid UserId { get; private set; }
-
-    [BsonElement("specialization")]
-    public string Specialization { get; private set; } = null!;
-
-    [BsonElement("availability")]
-    public List<DoctorAvailability> Availability { get; private set; } = new();
-
-    [BsonElement("status")]
-    public string Status { get; private set; } = "active";
-
-    [BsonElement("createdAt")]
-    public DateTime CreatedAt { get; private set; }
-
-    [BsonElement("updatedAt")]
-    public DateTime UpdatedAt { get; private set; }
-
-    public static Doctor Create(
+    public static Doctors Create(
         Guid userId,
         string email,
         string firstName,
@@ -37,15 +24,48 @@ public class Doctor
         IEnumerable<DoctorAvailability> availability)
     {
         var now = DateTime.UtcNow;
-        return new Doctor
+        return new Doctors
         {
             Id = Guid.NewGuid(),
             UserId = userId,
+            Email = email.Trim(),
+            FirstName = firstName.Trim(),
+            LastName = lastName.Trim(),
             Specialization = specialization.Trim(),
+            LicenseNumber = licenseNumber.Trim(),
             Availability = availability.Select(a => a).ToList(),
             Status = "active",
             CreatedAt = now,
             UpdatedAt = now
+        };
+    }
+
+    internal static Doctors Rehydrate(
+        Guid id,
+        Guid userId,
+        string email,
+        string firstName,
+        string lastName,
+        string specialization,
+        string licenseNumber,
+        IEnumerable<DoctorAvailability> availability,
+        string status,
+        DateTime createdAt,
+        DateTime updatedAt)
+    {
+        return new Doctors
+        {
+            Id = id,
+            UserId = userId,
+            Email = email,
+            FirstName = firstName,
+            LastName = lastName,
+            Specialization = specialization,
+            LicenseNumber = licenseNumber,
+            Availability = availability.ToList(),
+            Status = status,
+            CreatedAt = createdAt,
+            UpdatedAt = updatedAt
         };
     }
 
@@ -63,7 +83,7 @@ public class Doctor
 
     public void SetOnLeave()
     {
-        Status = "onleave";
+        Status = "on-leave";
         UpdatedAt = DateTime.UtcNow;
     }
 

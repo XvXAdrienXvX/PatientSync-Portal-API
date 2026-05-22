@@ -1,34 +1,17 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace Patients.Module.Domain;
 
 public class Allergy
 {
-    [BsonId]
-    [BsonElement("_id")]
-    public Guid Id { get; private set; }
-
-    [BsonElement("patientId")]
-    public Guid PatientId { get; private set; }
-
-    [BsonElement("substance")]
-    public string Substance { get; private set; } = null!;
-
-    [BsonElement("reactionType")]
-    public string ReactionType { get; private set; } = null!;
-
-    [BsonElement("severity")]
-    public string Severity { get; private set; } = null!;
-
-    [BsonElement("loggedAt")]
-    public DateTime LoggedAt { get; private set; }
-
-    [BsonElement("createdAt")]
-    public DateTime CreatedAt { get; private set; }
-
-    [BsonElement("updatedAt")]
-    public DateTime UpdatedAt { get; private set; }
+    public Guid Id { get; internal set; }
+    public Guid PatientId { get; internal set; }
+    public string Substance { get; internal set; } = null!;
+    public string ReactionType { get; internal set; } = null!;
+    public string Severity { get; internal set; } = null!;
+    public DateTime LoggedAt { get; internal set; }
+    public DateTime CreatedAt { get; internal set; }
+    public DateTime UpdatedAt { get; internal set; }
 
     public static Allergy Create(
         Guid patientId,
@@ -48,6 +31,29 @@ public class Allergy
             LoggedAt = loggedAt,
             CreatedAt = now,
             UpdatedAt = now
+        };
+    }
+
+    internal static Allergy Rehydrate(
+        Guid id,
+        Guid patientId,
+        string substance,
+        string reactionType,
+        string severity,
+        DateTime loggedAt,
+        DateTime createdAt,
+        DateTime updatedAt)
+    {
+        return new Allergy
+        {
+            Id = id,
+            PatientId = patientId,
+            Substance = substance,
+            ReactionType = reactionType,
+            Severity = severity,
+            LoggedAt = loggedAt,
+            CreatedAt = createdAt,
+            UpdatedAt = updatedAt
         };
     }
 

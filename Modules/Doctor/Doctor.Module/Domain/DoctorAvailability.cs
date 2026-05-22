@@ -1,4 +1,4 @@
-using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace Doctor.Module.Domain;
 
@@ -12,17 +12,15 @@ public class DoctorAvailability
         SlotDuration = slotDuration;
     }
 
-    [BsonElement("dayOfWeek")]
-    public int DayOfWeek { get; private set; }
+    public int DayOfWeek { get; internal set; }
+    public string StartTime { get; internal set; } = null!;
+    public string EndTime { get; internal set; } = null!;
+    public int SlotDuration { get; internal set; }
 
-    [BsonElement("startTime")]
-    public string StartTime { get; private set; } = null!;
-
-    [BsonElement("endTime")]
-    public string EndTime { get; private set; } = null!;
-
-    [BsonElement("slotDuration")]
-    public int SlotDuration { get; private set; }
+    internal static DoctorAvailability Rehydrate(int dayOfWeek, string startTime, string endTime, int slotDuration)
+    {
+        return new DoctorAvailability(dayOfWeek, startTime, endTime, slotDuration);
+    }
 
     public void UpdateSchedule(string startTime, string endTime, int slotDuration)
     {

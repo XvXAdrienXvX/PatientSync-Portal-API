@@ -1,46 +1,21 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace Messaging.Module.Domain;
 
 public class Message
 {
-    [BsonId]
-    [BsonElement("_id")]
-    public Guid Id { get; private set; }
-
-    [BsonElement("senderId")]
-    public Guid SenderId { get; private set; }
-
-    [BsonElement("recipientId")]
-    public Guid RecipientId { get; private set; }
-
-    [BsonElement("senderRole")]
-    public string SenderRole { get; private set; } = null!;
-
-    [BsonElement("recipientRole")]
-    public string RecipientRole { get; private set; } = null!;
-
-    [BsonElement("subject")]
-    public string? Subject { get; private set; }
-
-    [BsonElement("content")]
-    public string Content { get; private set; } = null!;
-
-    [BsonElement("status")]
-    public string Status { get; private set; } = "unread";
-
-    [BsonElement("readAt")]
-    public DateTime? ReadAt { get; private set; }
-
-    [BsonElement("isDeleted")]
-    public bool IsDeleted { get; private set; }
-
-    [BsonElement("createdAt")]
-    public DateTime CreatedAt { get; private set; }
-
-    [BsonElement("updatedAt")]
-    public DateTime UpdatedAt { get; private set; }
+    public Guid Id { get; internal set; }
+    public Guid SenderId { get; internal set; }
+    public Guid RecipientId { get; internal set; }
+    public string SenderRole { get; internal set; } = null!;
+    public string RecipientRole { get; internal set; } = null!;
+    public string? Subject { get; internal set; }
+    public string Content { get; internal set; } = null!;
+    public string Status { get; internal set; } = "unread";
+    public DateTime? ReadAt { get; internal set; }
+    public bool IsDeleted { get; internal set; }
+    public DateTime CreatedAt { get; internal set; }
+    public DateTime UpdatedAt { get; internal set; }
 
     public static Message Create(
         Guid senderId,
@@ -64,6 +39,37 @@ public class Message
             IsDeleted = false,
             CreatedAt = now,
             UpdatedAt = now
+        };
+    }
+
+    internal static Message Rehydrate(
+        Guid id,
+        Guid senderId,
+        Guid recipientId,
+        string senderRole,
+        string recipientRole,
+        string? subject,
+        string content,
+        string status,
+        DateTime? readAt,
+        bool isDeleted,
+        DateTime createdAt,
+        DateTime updatedAt)
+    {
+        return new Message
+        {
+            Id = id,
+            SenderId = senderId,
+            RecipientId = recipientId,
+            SenderRole = senderRole,
+            RecipientRole = recipientRole,
+            Subject = subject,
+            Content = content,
+            Status = status,
+            ReadAt = readAt,
+            IsDeleted = isDeleted,
+            CreatedAt = createdAt,
+            UpdatedAt = updatedAt
         };
     }
 

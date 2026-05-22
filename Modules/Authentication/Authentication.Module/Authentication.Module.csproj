@@ -8,12 +8,21 @@
 
 <ItemGroup>
 	<Folder Include="Domain\" />
-	<Folder Include="Features\" />
 </ItemGroup>
 
 <ItemGroup>
+  <ProjectReference Include="..\Authentication.Contracts\Authentication.Contracts.csproj" />
+</ItemGroup>
+
+<ItemGroup>
+  <PackageReference Include="FastEndpoints" Version="8.0.0" />
+  <PackageReference Include="FastEndpoints.Attributes" Version="8.1.0" />
+  <PackageReference Include="MediatR" Version="14.1.0" />
+  <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.8" />
   <PackageReference Include="MongoDB.Bson" Version="3.8.1" />
   <PackageReference Include="MongoDB.Driver" Version="3.8.1" />
+  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.0" />
 </ItemGroup>
 
 </Project>

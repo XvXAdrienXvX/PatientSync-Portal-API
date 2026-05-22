@@ -1,4 +1,4 @@
-using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace Appointments.Module.Domain;
 
@@ -11,12 +11,12 @@ public class VisitNotes
         DeniedAt = deniedAt;
     }
 
-    [BsonElement("assessment")]
-    public string Assessment { get; private set; }
+    public string Assessment { get; internal set; }
+    public string Plan { get; internal set; }
+    public DateTime? DeniedAt { get; internal set; }
 
-    [BsonElement("plan")]
-    public string Plan { get; private set; }
-
-    [BsonElement("deniedAt")]
-    public DateTime? DeniedAt { get; private set; }
+    internal static VisitNotes Rehydrate(string assessment, string plan, DateTime? deniedAt)
+    {
+        return new VisitNotes(assessment, plan, deniedAt);
+    }
 }

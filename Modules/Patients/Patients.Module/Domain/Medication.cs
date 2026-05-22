@@ -1,43 +1,20 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace Patients.Module.Domain;
 
 public class Medication
 {
-    [BsonId]
-    [BsonElement("_id")]
-    public Guid Id { get; private set; }
-
-    [BsonElement("patientId")]
-    public Guid PatientId { get; private set; }
-
-    [BsonElement("name")]
-    public string Name { get; private set; } = null!;
-
-    [BsonElement("dosage")]
-    public string Dosage { get; private set; } = null!;
-
-    [BsonElement("frequency")]
-    public string Frequency { get; private set; } = null!;
-
-    [BsonElement("reason")]
-    public string Reason { get; private set; } = null!;
-
-    [BsonElement("startedDate")]
-    public DateTime StartedDate { get; private set; }
-
-    [BsonElement("endedDate")]
-    public DateTime? EndedDate { get; private set; }
-
-    [BsonElement("status")]
-    public string Status { get; private set; } = "active";
-
-    [BsonElement("createdAt")]
-    public DateTime CreatedAt { get; private set; }
-
-    [BsonElement("updatedAt")]
-    public DateTime UpdatedAt { get; private set; }
+    public Guid Id { get; internal set; }
+    public Guid PatientId { get; internal set; }
+    public string Name { get; internal set; } = null!;
+    public string Dosage { get; internal set; } = null!;
+    public string Frequency { get; internal set; } = null!;
+    public string Reason { get; internal set; } = null!;
+    public DateTime StartedDate { get; internal set; }
+    public DateTime? EndedDate { get; internal set; }
+    public string Status { get; internal set; } = "active";
+    public DateTime CreatedAt { get; internal set; }
+    public DateTime UpdatedAt { get; internal set; }
 
     public static Medication Create(
         Guid patientId,
@@ -61,6 +38,35 @@ public class Medication
             Status = "active",
             CreatedAt = now,
             UpdatedAt = now
+        };
+    }
+
+    internal static Medication Rehydrate(
+        Guid id,
+        Guid patientId,
+        string name,
+        string dosage,
+        string frequency,
+        string reason,
+        DateTime startedDate,
+        DateTime? endedDate,
+        string status,
+        DateTime createdAt,
+        DateTime updatedAt)
+    {
+        return new Medication
+        {
+            Id = id,
+            PatientId = patientId,
+            Name = name,
+            Dosage = dosage,
+            Frequency = frequency,
+            Reason = reason,
+            StartedDate = startedDate,
+            EndedDate = endedDate,
+            Status = status,
+            CreatedAt = createdAt,
+            UpdatedAt = updatedAt
         };
     }
 
