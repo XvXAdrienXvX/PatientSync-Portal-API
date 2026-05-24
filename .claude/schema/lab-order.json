@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LabOrderDO",
+  "type": "object",
+  "description": "MongoDB lab orders collection schema for PatientSync laboratory order records.",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the lab order."
+    },
+    "patientId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identifier of the patient the order belongs to."
+    },
+    "doctorId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identifier of the doctor who placed the order."
+    },
+    "testType": {
+      "type": "string",
+      "enum": [
+        "CBC",
+        "Metabolic Panel",
+        "TSH"
+      ],
+      "description": "Type of laboratory test ordered."
+    },
+    "orderedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the lab order was created."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Ordered",
+        "Results Received"
+      ],
+      "description": "Current status of the lab order."
+    },
+    "resultsPdfUrl": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URL to the lab results PDF once available."
+    },
+    "doctorNotes": {
+      "type": ["string", "null"],
+      "description": "Doctor's interpretation or notes related to the lab order."
+    },
+    "resultsReceivedDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when lab results were received."
+    }
+  },
+  "required": [
+    "orderId",
+    "patientId",
+    "doctorId",
+    "testType",
+    "orderedDate",
+    "status"
+  ],
+  "additionalProperties": false
+}
