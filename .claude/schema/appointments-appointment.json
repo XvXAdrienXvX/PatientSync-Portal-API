@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AppointmentDO",
+  "type": "object",
+  "description": "MongoDB appointments.appointments collection — Appointments module. VisitNotes is embedded.",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Appointment unique identifier (Guid as string)."
+    },
+    "patientId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "References patients.patients._id."
+    },
+    "doctorId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "References doctors.doctors._id."
+    },
+    "scheduledAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Appointment date and time (UTC)."
+    },
+    "duration": {
+      "type": "integer",
+      "minimum": 5,
+      "description": "Appointment duration in minutes."
+    },
+    "chiefComplaint": {
+      "type": "string",
+      "description": "Primary reason for the visit as stated by the patient."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["scheduled", "completed", "cancelled", "no-show"],
+      "description": "Current appointment status."
+    },
+    "visitNotes": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "description": "Doctor notes filled after the visit. Embedded sub-document.",
+          "properties": {
+            "assessment": {
+              "type": "string",
+              "description": "Doctor's clinical assessment."
+            },
+            "plan": {
+              "type": "string",
+              "description": "Treatment plan."
+            },
+            "deniedAt": {
+              "type": ["string", "null"],
+              "format": "date-time",
+              "description": "Timestamp if the visit was denied/refused."
+            }
+          },
+          "required": ["assessment", "plan"],
+          "additionalProperties": false
+        }
+      ],
+      "description": "Embedded visit notes. Null until appointment is completed."
+    },
+    "cancelledAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp of cancellation. Null if not cancelled."
+    },
+    "cancelledBy": {
+      "type": ["string", "null"],
+      "description": "Who cancelled: 'patient' or 'doctor'."
+    },
+    "cancellationReason": {
+      "type": ["string", "null"],
+      "description": "Human-readable cancellation reason."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["_id", "patientId", "doctorId", "scheduledAt", "duration", "chiefComplaint", "status", "createdAt", "updatedAt"],
+  "additionalProperties": false
+}

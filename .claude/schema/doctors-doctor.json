@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DoctorDO",
+  "type": "object",
+  "description": "MongoDB doctors.doctors collection — Doctor module. Availability is embedded as an array.",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Doctor unique identifier (Guid as string)."
+    },
+    "userId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "References auth.users._id."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Doctor email address. Denormalized from auth.users for fast lookup."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Doctor first name. Denormalized from auth.users."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Doctor last name. Denormalized from auth.users."
+    },
+    "specialization": {
+      "type": "string",
+      "description": "Medical specialization (e.g. General Practice, Cardiology)."
+    },
+    "licenseNumber": {
+      "type": "string",
+      "description": "Medical license number."
+    },
+    "availability": {
+      "type": "array",
+      "description": "Weekly recurring schedule. Each entry = one day of week.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dayOfWeek": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 6,
+            "description": "Day of week: 0=Sunday, 1=Monday ... 6=Saturday."
+          },
+          "startTime": {
+            "type": "string",
+            "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+            "description": "Start time in HH:mm format (e.g. 09:00)."
+          },
+          "endTime": {
+            "type": "string",
+            "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+            "description": "End time in HH:mm format (e.g. 17:00)."
+          },
+          "slotDuration": {
+            "type": "integer",
+            "minimum": 5,
+            "description": "Duration of each appointment slot in minutes."
+          }
+        },
+        "required": ["dayOfWeek", "startTime", "endTime", "slotDuration"],
+        "additionalProperties": false
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "on-leave", "inactive"],
+      "description": "Current doctor status."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["_id", "userId", "specialization", "licenseNumber", "availability", "status", "createdAt", "updatedAt"],
+  "additionalProperties": false
+}

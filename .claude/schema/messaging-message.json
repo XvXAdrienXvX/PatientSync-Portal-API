@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MessageDO",
+  "type": "object",
+  "description": "MongoDB messaging.messages collection — Messaging module.",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Message unique identifier (Guid as string)."
+    },
+    "senderId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "References auth.users._id."
+    },
+    "recipientId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "References auth.users._id."
+    },
+    "senderRole": {
+      "type": "string",
+      "enum": ["patient", "doctor", "admin"],
+      "description": "Role of the sender. Denormalized for fast inbox filtering."
+    },
+    "recipientRole": {
+      "type": "string",
+      "enum": ["patient", "doctor", "admin"],
+      "description": "Role of the recipient. Denormalized for fast inbox filtering."
+    },
+    "subject": {
+      "type": ["string", "null"],
+      "description": "Optional message subject."
+    },
+    "content": {
+      "type": "string",
+      "description": "Message body."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["unread", "read", "archived"],
+      "description": "Message read status from the recipient's perspective."
+    },
+    "readAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when the recipient read the message."
+    },
+    "isDeleted": {
+      "type": "boolean",
+      "description": "Soft delete flag. Never hard-delete messages for audit trail."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["_id", "senderId", "recipientId", "senderRole", "recipientRole", "content", "status", "isDeleted", "createdAt", "updatedAt"],
+  "additionalProperties": false
+}

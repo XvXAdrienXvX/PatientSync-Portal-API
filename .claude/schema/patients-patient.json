@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PatientDO",
+  "type": "object",
+  "description": "MongoDB patients.patients collection — Patients module.",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Patient unique identifier (Guid as string)."
+    },
+    "userId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "References auth.users._id."
+    },
+    "dateOfBirth": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Patient date of birth."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "archived"],
+      "description": "Current patient account status."
+    },
+    "doctorId": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Assigned doctor id. References doctors.doctors._id."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["_id", "userId", "dateOfBirth", "status", "createdAt", "updatedAt"],
+  "additionalProperties": false
+}

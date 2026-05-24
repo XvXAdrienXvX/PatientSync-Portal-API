@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AllergyDO",
+  "type": "object",
+  "description": "MongoDB patients.allergies collection — Patients module.",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Allergy unique identifier (Guid as string)."
+    },
+    "patientId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "References patients.patients._id."
+    },
+    "substance": {
+      "type": "string",
+      "description": "Allergenic substance (e.g. Penicillin, Peanuts)."
+    },
+    "reactionType": {
+      "type": "string",
+      "description": "Type of allergic reaction (e.g. Anaphylaxis, Hives, Rash)."
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["mild", "moderate", "severe"],
+      "description": "Severity of the allergic reaction."
+    },
+    "loggedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date the allergy was first documented."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["_id", "patientId", "substance", "reactionType", "severity", "loggedAt", "createdAt", "updatedAt"],
+  "additionalProperties": false
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MedicationDO",
+  "type": "object",
+  "description": "MongoDB patients.medications collection — Patients module.",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Medication unique identifier (Guid as string)."
+    },
+    "patientId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "References patients.patients._id."
+    },
+    "name": {
+      "type": "string",
+      "description": "Medication name (e.g. Lisinopril)."
+    },
+    "dosage": {
+      "type": "string",
+      "description": "Dosage amount and unit (e.g. 10mg)."
+    },
+    "frequency": {
+      "type": "string",
+      "description": "How often the medication is taken (e.g. Once daily)."
+    },
+    "reason": {
+      "type": "string",
+      "description": "Clinical reason for the prescription (e.g. Hypertension)."
+    },
+    "startedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date the medication was started."
+    },
+    "endedDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Date the medication was stopped. Null if still active."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive"],
+      "description": "Current medication status."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["_id", "patientId", "name", "dosage", "frequency", "reason", "startedDate", "status", "createdAt", "updatedAt"],
+  "additionalProperties": false
+}
