@@ -12,6 +12,15 @@ public class DoctorDO
     [BsonElement("userId")]
     public Guid UserId { get; set; }
 
+    [BsonElement("email")]
+    public string Email { get; set; } = null!;
+
+    [BsonElement("firstName")]
+    public string FirstName { get; set; } = null!;
+
+    [BsonElement("lastName")]
+    public string LastName { get; set; } = null!;
+
     [BsonElement("specialization")]
     public string Specialization { get; set; } = null!;
 

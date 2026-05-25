@@ -1,3 +1,4 @@
+using Appointments.Module;
 using Authentication.Module;
 using FastEndpoints;
 
@@ -10,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 // Module registrations
 builder.Services.AddAuthenticationModule();
+builder.Services.AddAppointmentsModule();
 
 // FastEndpoints registration (will discover endpoint classes)
 builder.Services.AddFastEndpoints();
