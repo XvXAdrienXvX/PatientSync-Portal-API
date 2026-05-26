@@ -11,4 +11,22 @@ internal sealed class InMemoryAppointmentRepository : IAppointmentRepository
         _store[appointment.Id] = appointment;
         return Task.CompletedTask;
     }
+
+    public Task<IReadOnlyList<Appointment>> GetByPatientIdAsync(Guid patientId, CancellationToken ct = default)
+    {
+        IReadOnlyList<Appointment> result = _store.Values
+            .Where(a => a.PatientId == patientId)
+            .OrderByDescending(a => a.ScheduledAt)
+            .ToList();
+        return Task.FromResult(result);
+    }
+
+    public Task<IReadOnlyList<Appointment>> GetByDoctorIdAsync(Guid doctorId, CancellationToken ct = default)
+    {
+        IReadOnlyList<Appointment> result = _store.Values
+            .Where(a => a.DoctorId == doctorId)
+            .OrderByDescending(a => a.ScheduledAt)
+            .ToList();
+        return Task.FromResult(result);
+    }
 }

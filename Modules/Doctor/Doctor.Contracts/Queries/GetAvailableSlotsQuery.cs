@@ -1,7 +1,7 @@
-using Appointments.Contracts.Dtos;
+using Doctor.Contracts.Dtos;
 using MediatR;
 
-namespace Appointments.Contracts.Queries;
+namespace Doctor.Contracts.Queries;
 
 public record GetAvailableSlotsQuery : IRequest<List<SlotDto>>
 {

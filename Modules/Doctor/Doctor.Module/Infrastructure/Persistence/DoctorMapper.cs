@@ -1,4 +1,3 @@
-using System.Linq;
 using Doctor.Module.Domain;
 
 namespace Doctor.Module.Infrastructure.Persistence;
@@ -16,7 +15,6 @@ public static class DoctorMapper
             LastName = domain.LastName,
             Specialization = domain.Specialization,
             LicenseNumber = domain.LicenseNumber,
-            Availability = domain.Availability.Select(ToDataObject).ToList(),
             Status = domain.Status,
             CreatedAt = domain.CreatedAt,
             UpdatedAt = domain.UpdatedAt
@@ -25,7 +23,6 @@ public static class DoctorMapper
 
     public static Doctors ToDomain(DoctorDO data)
     {
-        var availability = data.Availability.Select(ToDomain);
         return Doctors.Rehydrate(
             data.Id,
             data.UserId,
@@ -34,25 +31,8 @@ public static class DoctorMapper
             data.LastName,
             data.Specialization,
             data.LicenseNumber,
-            availability,
             data.Status,
             data.CreatedAt,
             data.UpdatedAt);
-    }
-
-    public static DoctorAvailabilityDO ToDataObject(DoctorAvailability domain)
-    {
-        return new DoctorAvailabilityDO
-        {
-            DayOfWeek = domain.DayOfWeek,
-            StartTime = domain.StartTime,
-            EndTime = domain.EndTime,
-            SlotDuration = domain.SlotDuration
-        };
-    }
-
-    public static DoctorAvailability ToDomain(DoctorAvailabilityDO data)
-    {
-        return DoctorAvailability.Rehydrate(data.DayOfWeek, data.StartTime, data.EndTime, data.SlotDuration);
     }
 }

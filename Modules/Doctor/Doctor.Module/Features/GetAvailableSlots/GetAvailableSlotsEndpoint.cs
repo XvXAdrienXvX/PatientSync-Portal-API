@@ -1,9 +1,9 @@
-using Appointments.Contracts.Dtos;
-using Appointments.Contracts.Queries;
+using Doctor.Contracts.Dtos;
+using Doctor.Contracts.Queries;
 using FastEndpoints;
 using MediatR;
 
-namespace Appointments.Module.Features.GetAvailableSlots;
+namespace Doctor.Module.Features.GetAvailableSlots;
 
 internal class GetAvailableSlotsEndpoint : Endpoint<GetAvailableSlotsQuery, List<SlotDto>>
 {
@@ -14,7 +14,7 @@ internal class GetAvailableSlotsEndpoint : Endpoint<GetAvailableSlotsQuery, List
 
     public override void Configure()
     {
-        Get("/appointments/slots");
+        Get("/doctor/slots");
         AllowAnonymous();
     }
 

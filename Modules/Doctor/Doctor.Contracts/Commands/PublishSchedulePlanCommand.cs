@@ -1,7 +1,7 @@
-using Appointments.Contracts.Dtos;
+using Doctor.Contracts.Dtos;
 using MediatR;
 
-namespace Appointments.Contracts.Commands;
+namespace Doctor.Contracts.Commands;
 
 public record PublishSchedulePlanCommand : IRequest<SchedulePlanDto>
 {

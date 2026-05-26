@@ -1,9 +1,9 @@
-using Appointments.Contracts.Commands;
-using Appointments.Contracts.Dtos;
+using Doctor.Contracts.Commands;
+using Doctor.Contracts.Dtos;
 using FastEndpoints;
 using MediatR;
 
-namespace Appointments.Module.Features.CreateSchedulePlan;
+namespace Doctor.Module.Features.CreateSchedulePlan;
 
 internal class CreateSchedulePlanEndpoint : Endpoint<CreateSchedulePlanCommand, SchedulePlanDto>
 {
@@ -14,7 +14,7 @@ internal class CreateSchedulePlanEndpoint : Endpoint<CreateSchedulePlanCommand, 
 
     public override void Configure()
     {
-        Post("/appointments/doctor/schedule-plan");
+        Post("/doctor/schedule-plan");
         AllowAnonymous();
     }
 

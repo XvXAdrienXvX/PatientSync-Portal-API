@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Appointments.Module.Infrastructure.Persistence;
+namespace Doctor.Module.Infrastructure.Persistence;
 
 [BsonIgnoreExtraElements]
 internal class SchedulePlanDO

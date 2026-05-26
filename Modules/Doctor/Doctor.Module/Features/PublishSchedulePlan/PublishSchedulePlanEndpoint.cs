@@ -1,9 +1,9 @@
-using Appointments.Contracts.Commands;
-using Appointments.Contracts.Dtos;
+using Doctor.Contracts.Commands;
+using Doctor.Contracts.Dtos;
 using FastEndpoints;
 using MediatR;
 
-namespace Appointments.Module.Features.PublishSchedulePlan;
+namespace Doctor.Module.Features.PublishSchedulePlan;
 
 internal class PublishSchedulePlanEndpoint : Endpoint<PublishSchedulePlanCommand, SchedulePlanDto>
 {
@@ -14,7 +14,7 @@ internal class PublishSchedulePlanEndpoint : Endpoint<PublishSchedulePlanCommand
 
     public override void Configure()
     {
-        Put("/appointments/doctor/schedule-plan/{planId}/publish");
+        Put("/doctor/schedule-plan/{planId}/publish");
         AllowAnonymous();
     }
 

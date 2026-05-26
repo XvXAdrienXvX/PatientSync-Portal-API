@@ -1,9 +1,9 @@
-using Appointments.Contracts.Dtos;
-using Appointments.Contracts.Queries;
-using Appointments.Module.Infrastructure.Persistence;
+using Doctor.Contracts.Dtos;
+using Doctor.Contracts.Queries;
+using Doctor.Module.Infrastructure.Persistence;
 using MediatR;
 
-namespace Appointments.Module.Features.GetAvailableSlots;
+namespace Doctor.Module.Features.GetAvailableSlots;
 
 internal class GetAvailableSlotsHandler : IRequestHandler<GetAvailableSlotsQuery, List<SlotDto>>
 {
@@ -19,7 +19,7 @@ internal class GetAvailableSlotsHandler : IRequestHandler<GetAvailableSlotsQuery
         return plans
             .SelectMany(p => p.Slots)
             .Where(s => s.Status == "available")
-            .Select(AppointmentsMapper.ToDto)
+            .Select(SchedulePlanMapper.ToDto)
             .ToList();
     }
 }

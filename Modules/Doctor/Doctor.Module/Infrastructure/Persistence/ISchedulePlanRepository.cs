@@ -1,6 +1,6 @@
-using Appointments.Module.Domain;
+using Doctor.Module.Domain;
 
-namespace Appointments.Module.Infrastructure.Persistence;
+namespace Doctor.Module.Infrastructure.Persistence;
 
 internal interface ISchedulePlanRepository
 {

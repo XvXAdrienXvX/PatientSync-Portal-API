@@ -27,9 +27,6 @@ public class DoctorDO
     [BsonElement("licenseNumber")]
     public string LicenseNumber { get; set; } = null!;
 
-    [BsonElement("availability")]
-    public List<DoctorAvailabilityDO> Availability { get; set; } = new();
-
     [BsonElement("status")]
     public string Status { get; set; } = null!;
 

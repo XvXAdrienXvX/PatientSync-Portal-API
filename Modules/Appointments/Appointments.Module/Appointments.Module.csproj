@@ -6,6 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../Appointments.Contracts/Appointments.Contracts.csproj" />
+    <ProjectReference Include="../../Doctor/Doctor.Contracts/Doctor.Contracts.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />

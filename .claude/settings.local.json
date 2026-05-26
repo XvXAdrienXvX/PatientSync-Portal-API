@@ -8,7 +8,10 @@
       "Bash(dotnet script *)",
       "Bash(dotnet tool *)",
       "PowerShell(dotnet script *)",
-      "Skill(scaffold-module)"
+      "Skill(scaffold-module)",
+      "Bash(Move-Item *)",
+      "PowerShell(Get-ChildItem -Recurse \"C:\\\\Dev\\\\PatientSync-Portal-API\" -Depth 5 | Where-Object { !$_.PSIsContainer } | Select-Object FullName | Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem -Recurse \"C:\\\\Dev\\\\PatientSync-Portal-API\\\\Modules\\\\Appointments\\\\Appointments.Contracts\" | Where-Object { !$_.PSIsContainer } | Select-Object FullName)"
     ]
   }
 }

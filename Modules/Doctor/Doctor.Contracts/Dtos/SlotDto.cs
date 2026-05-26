@@ -1,4 +1,4 @@
-namespace Appointments.Contracts.Dtos;
+namespace Doctor.Contracts.Dtos;
 
 public record SlotDto(
     Guid Id,

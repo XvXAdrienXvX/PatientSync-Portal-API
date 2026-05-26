@@ -1,5 +1,6 @@
 using Appointments.Module;
 using Authentication.Module;
+using Doctor.Module;
 using FastEndpoints;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddSwaggerGen();
 
 // Module registrations
 builder.Services.AddAuthenticationModule();
+builder.Services.AddDoctorModule();
 builder.Services.AddAppointmentsModule();
 
 // FastEndpoints registration (will discover endpoint classes)

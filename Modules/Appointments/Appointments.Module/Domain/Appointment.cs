@@ -1,5 +1,3 @@
-using System;
-
 namespace Appointments.Module.Domain;
 
 public class Appointment
@@ -23,12 +21,13 @@ public class Appointment
         Guid doctorId,
         DateTime scheduledAt,
         int duration,
-        string chiefComplaint)
+        string chiefComplaint,
+        Guid? id = null)
     {
         var now = DateTime.UtcNow;
         return new Appointment
         {
-            Id = Guid.NewGuid(),
+            Id = id ?? Guid.NewGuid(),
             PatientId = patientId,
             DoctorId = doctorId,
             ScheduledAt = scheduledAt,
@@ -76,9 +75,7 @@ public class Appointment
     public void Reschedule(DateTime newScheduledAt)
     {
         if (Status != "scheduled")
-        {
             throw new InvalidOperationException("Only scheduled appointments can be rescheduled.");
-        }
 
         ScheduledAt = newScheduledAt;
         UpdatedAt = DateTime.UtcNow;
@@ -86,10 +83,7 @@ public class Appointment
 
     public void Cancel(string cancelledBy, string cancellationReason)
     {
-        if (Status == "cancelled")
-        {
-            return;
-        }
+        if (Status == "cancelled") return;
 
         Status = "cancelled";
         CancelledAt = DateTime.UtcNow;
@@ -101,9 +95,7 @@ public class Appointment
     public void Complete(string assessment, string plan, DateTime? deniedAt = null)
     {
         if (Status == "cancelled")
-        {
             throw new InvalidOperationException("A cancelled appointment cannot be completed.");
-        }
 
         Status = "completed";
         VisitNotes = new VisitNotes(assessment.Trim(), plan.Trim(), deniedAt);

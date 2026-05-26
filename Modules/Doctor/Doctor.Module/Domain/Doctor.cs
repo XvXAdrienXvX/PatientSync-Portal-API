@@ -9,7 +9,6 @@ public class Doctors
     public string LastName { get; internal set; } = null!;
     public string Specialization { get; internal set; } = null!;
     public string LicenseNumber { get; internal set; } = null!;
-    public List<DoctorAvailability> Availability { get; internal set; } = new();
     public string Status { get; internal set; } = "active";
     public DateTime CreatedAt { get; internal set; }
     public DateTime UpdatedAt { get; internal set; }
@@ -20,8 +19,7 @@ public class Doctors
         string firstName,
         string lastName,
         string specialization,
-        string licenseNumber,
-        IEnumerable<DoctorAvailability> availability)
+        string licenseNumber)
     {
         var now = DateTime.UtcNow;
         return new Doctors
@@ -33,7 +31,6 @@ public class Doctors
             LastName = lastName.Trim(),
             Specialization = specialization.Trim(),
             LicenseNumber = licenseNumber.Trim(),
-            Availability = availability.Select(a => a).ToList(),
             Status = "active",
             CreatedAt = now,
             UpdatedAt = now
@@ -48,7 +45,6 @@ public class Doctors
         string lastName,
         string specialization,
         string licenseNumber,
-        IEnumerable<DoctorAvailability> availability,
         string status,
         DateTime createdAt,
         DateTime updatedAt)
@@ -62,17 +58,10 @@ public class Doctors
             LastName = lastName,
             Specialization = specialization,
             LicenseNumber = licenseNumber,
-            Availability = availability.ToList(),
             Status = status,
             CreatedAt = createdAt,
             UpdatedAt = updatedAt
         };
-    }
-
-    public void SetAvailability(IEnumerable<DoctorAvailability> availability)
-    {
-        Availability = availability.Select(a => a).ToList();
-        UpdatedAt = DateTime.UtcNow;
     }
 
     public void SetActive()

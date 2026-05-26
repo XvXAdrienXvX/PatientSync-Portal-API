@@ -1,4 +1,4 @@
-namespace Appointments.Module.Domain;
+namespace Doctor.Module.Domain;
 
 internal class Slot
 {
