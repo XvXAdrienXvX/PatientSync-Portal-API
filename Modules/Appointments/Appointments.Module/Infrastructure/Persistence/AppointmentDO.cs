@@ -25,8 +25,8 @@ public class AppointmentDO
     [BsonElement("duration")]
     public int Duration { get; set; }
 
-    [BsonElement("chiefComplaint")]
-    public string ChiefComplaint { get; set; } = null!;
+    [BsonElement("patientComplaint")]
+    public string PatientComplaint { get; set; } = null!;
 
     [BsonElement("status")]
     public string Status { get; set; } = null!;

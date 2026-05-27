@@ -6,7 +6,7 @@ public record AppointmentDto(
     Guid DoctorId,
     DateTime ScheduledAt,
     int Duration,
-    string ChiefComplaint,
+    string PatientComplaint,
     string Status,
     DateTime CreatedAt,
     DateTime UpdatedAt);

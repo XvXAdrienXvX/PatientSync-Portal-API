@@ -7,5 +7,5 @@ public record BookSlotCommand : IRequest<AppointmentDto>
 {
     public Guid SlotId { get; init; }
     public Guid PatientId { get; init; }
-    public string ChiefComplaint { get; init; } = string.Empty;
+    public string PatientComplaint { get; init; } = string.Empty;
 }

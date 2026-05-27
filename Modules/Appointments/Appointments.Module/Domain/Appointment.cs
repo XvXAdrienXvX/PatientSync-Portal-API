@@ -7,7 +7,7 @@ public class Appointment
     public Guid DoctorId { get; internal set; }
     public DateTime ScheduledAt { get; internal set; }
     public int Duration { get; internal set; }
-    public string ChiefComplaint { get; internal set; } = null!;
+    public string PatientComplaint { get; internal set; } = null!;
     public string Status { get; internal set; } = "scheduled";
     public VisitNotes? VisitNotes { get; internal set; }
     public DateTime? CancelledAt { get; internal set; }
@@ -21,7 +21,7 @@ public class Appointment
         Guid doctorId,
         DateTime scheduledAt,
         int duration,
-        string chiefComplaint,
+        string patientComplaint,
         Guid? id = null)
     {
         var now = DateTime.UtcNow;
@@ -32,7 +32,7 @@ public class Appointment
             DoctorId = doctorId,
             ScheduledAt = scheduledAt,
             Duration = duration,
-            ChiefComplaint = chiefComplaint.Trim(),
+            PatientComplaint = patientComplaint.Trim(),
             Status = "scheduled",
             CreatedAt = now,
             UpdatedAt = now
@@ -45,7 +45,7 @@ public class Appointment
         Guid doctorId,
         DateTime scheduledAt,
         int duration,
-        string chiefComplaint,
+        string patientComplaint,
         string status,
         VisitNotes? visitNotes,
         DateTime? cancelledAt,
@@ -61,7 +61,7 @@ public class Appointment
             DoctorId = doctorId,
             ScheduledAt = scheduledAt,
             Duration = duration,
-            ChiefComplaint = chiefComplaint,
+            PatientComplaint = patientComplaint,
             Status = status,
             VisitNotes = visitNotes,
             CancelledAt = cancelledAt,

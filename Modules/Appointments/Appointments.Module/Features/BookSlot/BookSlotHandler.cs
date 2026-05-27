@@ -32,7 +32,7 @@ internal class BookSlotHandler : IRequestHandler<BookSlotCommand, AppointmentDto
             slot.DoctorId,
             slot.StartTime,
             slot.Duration,
-            command.ChiefComplaint,
+            command.PatientComplaint,
             appointmentId);
 
         await _appointmentRepository.SaveAsync(appointment, cancellationToken);
