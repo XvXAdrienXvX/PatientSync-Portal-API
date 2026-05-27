@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Authentication.Module.Infrastructure.Persistence;
 
 [BsonIgnoreExtraElements]
-public class UsersDO
+public class UsersDAO
 {
     [BsonId]
     [BsonRepresentation(BsonType.String)]

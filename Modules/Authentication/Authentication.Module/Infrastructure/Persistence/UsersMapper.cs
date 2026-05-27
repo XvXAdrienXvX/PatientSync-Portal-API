@@ -6,9 +6,9 @@ namespace Authentication.Module.Infrastructure.Persistence;
 
 public static class UsersMapper
 {
-    public static UsersDO ToDataObject(Users domain)
+    public static UsersDAO ToDataObject(Users domain)
     {
-        return new UsersDO
+        return new UsersDAO
         {
             Id = domain.Id,
             Email = domain.Email,
@@ -22,7 +22,7 @@ public static class UsersMapper
         };
     }
 
-    public static Users ToDomain(UsersDO data)
+    public static Users ToDomain(UsersDAO data)
     {
         return Users.Rehydrate(
             data.Id,
@@ -37,7 +37,7 @@ public static class UsersMapper
     }
 
     public static Users ToDomain(CreateUserCommand command)
-        => ToDomain(new UsersDO
+        => ToDomain(new UsersDAO
         {
             Id = Guid.NewGuid(),
             Email = command.Email,
@@ -50,7 +50,7 @@ public static class UsersMapper
             UpdatedAt = DateTime.UtcNow
         });
 
-    public static UsersDO ToDataObject(CreateUserCommand command)
+    public static UsersDAO ToDataObject(CreateUserCommand command)
         => ToDataObject(ToDomain(command));
 
     public static AuthUserDto ToResponse(Users domain)

@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Doctor.Module.Infrastructure.Persistence;
 
 [BsonIgnoreExtraElements]
-public class DoctorDO
+public class DoctorDAO
 {
     [BsonId]
     public Guid Id { get; set; }

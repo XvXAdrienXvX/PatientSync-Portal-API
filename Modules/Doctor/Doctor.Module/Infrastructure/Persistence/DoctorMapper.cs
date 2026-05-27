@@ -4,9 +4,9 @@ namespace Doctor.Module.Infrastructure.Persistence;
 
 public static class DoctorMapper
 {
-    public static DoctorDO ToDataObject(Doctors domain)
+    public static DoctorDAO ToDataObject(Doctors domain)
     {
-        return new DoctorDO
+        return new DoctorDAO
         {
             Id = domain.Id,
             UserId = domain.UserId,
@@ -21,7 +21,7 @@ public static class DoctorMapper
         };
     }
 
-    public static Doctors ToDomain(DoctorDO data)
+    public static Doctors ToDomain(DoctorDAO data)
     {
         return Doctors.Rehydrate(
             data.Id,

@@ -8,6 +8,6 @@ namespace Authentication.Module.Infrastructure
         private readonly IMongoDatabase _db;
         public AuthenticationDbContext(IMongoDatabase db) => _db = db;
 
-        public IMongoCollection<UsersDO> Users => _db.GetCollection<UsersDO>("auth.users");
+        public IMongoCollection<UsersDAO> Users => _db.GetCollection<UsersDAO>("auth.users");
     }
 }

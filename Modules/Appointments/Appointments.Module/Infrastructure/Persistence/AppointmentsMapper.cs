@@ -11,21 +11,21 @@ internal static class AppointmentsMapper
         domain.DoctorId,
         domain.ScheduledAt,
         domain.Duration,
-        domain.ChiefComplaint,
+        domain.PatientComplaint,
         domain.Status,
         domain.CreatedAt,
         domain.UpdatedAt);
 
-    public static AppointmentDO ToDataObject(Appointment domain)
+    public static AppointmentDAO ToDataObject(Appointment domain)
     {
-        return new AppointmentDO
+        return new AppointmentDAO
         {
             Id = domain.Id,
             PatientId = domain.PatientId,
             DoctorId = domain.DoctorId,
             ScheduledAt = domain.ScheduledAt,
             Duration = domain.Duration,
-            ChiefComplaint = domain.ChiefComplaint,
+            PatientComplaint = domain.PatientComplaint,
             Status = domain.Status,
             VisitNotes = domain.VisitNotes is null ? null : ToDataObject(domain.VisitNotes),
             CancelledAt = domain.CancelledAt,
@@ -36,7 +36,7 @@ internal static class AppointmentsMapper
         };
     }
 
-    public static Appointment ToDomain(AppointmentDO data)
+    public static Appointment ToDomain(AppointmentDAO data)
     {
         return Appointment.Rehydrate(
             data.Id,
@@ -44,7 +44,7 @@ internal static class AppointmentsMapper
             data.DoctorId,
             data.ScheduledAt,
             data.Duration,
-            data.ChiefComplaint,
+            data.PatientComplaint,
             data.Status,
             data.VisitNotes is null ? null : ToDomain(data.VisitNotes),
             data.CancelledAt,
@@ -54,9 +54,9 @@ internal static class AppointmentsMapper
             data.UpdatedAt);
     }
 
-    public static VisitNotesDO ToDataObject(VisitNotes domain)
+    public static VisitNotesDAO ToDataObject(VisitNotes domain)
     {
-        return new VisitNotesDO
+        return new VisitNotesDAO
         {
             Assessment = domain.Assessment,
             Plan = domain.Plan,
@@ -64,7 +64,7 @@ internal static class AppointmentsMapper
         };
     }
 
-    public static VisitNotes ToDomain(VisitNotesDO data)
+    public static VisitNotes ToDomain(VisitNotesDAO data)
     {
         return VisitNotes.Rehydrate(data.Assessment, data.Plan, data.DeniedAt);
     }

@@ -5,7 +5,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Appointments.Module.Infrastructure.Persistence;
 
 [BsonIgnoreExtraElements]
-public class AppointmentDO
+public class AppointmentDAO
 {
     [BsonId]
     [BsonRepresentation(BsonType.String)]
@@ -32,7 +32,7 @@ public class AppointmentDO
     public string Status { get; set; } = null!;
 
     [BsonElement("visitNotes")]
-    public VisitNotesDO? VisitNotes { get; set; }
+    public VisitNotesDAO? VisitNotes { get; set; }
 
     [BsonElement("cancelledAt")]
     public DateTime? CancelledAt { get; set; }

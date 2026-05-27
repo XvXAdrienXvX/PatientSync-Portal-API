@@ -5,7 +5,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Patients.Module.Infrastructure.Persistence;
 
 [BsonIgnoreExtraElements]
-public class PatientDO
+public class PatientDAO
 {
     [BsonId]
     [BsonRepresentation(BsonType.String)]

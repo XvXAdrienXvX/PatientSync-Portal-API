@@ -5,7 +5,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Messaging.Module.Infrastructure.Persistence;
 
 [BsonIgnoreExtraElements]
-public class MessageDO
+public class MessageDAO
 {
     [BsonId]
     [BsonRepresentation(BsonType.String)]

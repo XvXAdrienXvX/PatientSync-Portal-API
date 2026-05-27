@@ -4,9 +4,9 @@ namespace Messaging.Module.Infrastructure.Persistence;
 
 public static class MessagingMapper
 {
-    public static MessageDO ToDataObject(Message domain)
+    public static MessageDAO ToDataObject(Message domain)
     {
-        return new MessageDO
+        return new MessageDAO
         {
             Id = domain.Id,
             SenderId = domain.SenderId,
@@ -23,7 +23,7 @@ public static class MessagingMapper
         };
     }
 
-    public static Message ToDomain(MessageDO data)
+    public static Message ToDomain(MessageDAO data)
     {
         return Message.Rehydrate(
             data.Id,

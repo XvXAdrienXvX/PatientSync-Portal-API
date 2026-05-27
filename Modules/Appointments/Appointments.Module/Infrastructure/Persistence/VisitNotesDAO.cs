@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Appointments.Module.Infrastructure.Persistence;
 
 [BsonIgnoreExtraElements]
-public class VisitNotesDO
+public class VisitNotesDAO
 {
     [BsonElement("assessment")]
     public string Assessment { get; set; } = null!;

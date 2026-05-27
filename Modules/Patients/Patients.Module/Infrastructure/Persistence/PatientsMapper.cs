@@ -4,9 +4,9 @@ namespace Patients.Module.Infrastructure.Persistence;
 
 public static class PatientsMapper
 {
-    public static PatientDO ToDataObject(Patient domain)
+    public static PatientDAO ToDataObject(Patient domain)
     {
-        return new PatientDO
+        return new PatientDAO
         {
             Id = domain.Id,
             UserId = domain.UserId,
@@ -18,7 +18,7 @@ public static class PatientsMapper
         };
     }
 
-    public static Patient ToDomain(PatientDO data)
+    public static Patient ToDomain(PatientDAO data)
     {
         return Patient.Rehydrate(
             data.Id,
@@ -30,9 +30,9 @@ public static class PatientsMapper
             data.UpdatedAt);
     }
 
-    public static MedicationDO ToDataObject(Medication domain)
+    public static MedicationDAO ToDataObject(Medication domain)
     {
-        return new MedicationDO
+        return new MedicationDAO
         {
             Id = domain.Id,
             PatientId = domain.PatientId,
@@ -48,7 +48,7 @@ public static class PatientsMapper
         };
     }
 
-    public static Medication ToDomain(MedicationDO data)
+    public static Medication ToDomain(MedicationDAO data)
     {
         return Medication.Rehydrate(
             data.Id,
@@ -64,9 +64,9 @@ public static class PatientsMapper
             data.UpdatedAt);
     }
 
-    public static AllergyDO ToDataObject(Allergy domain)
+    public static AllergyDAO ToDataObject(Allergy domain)
     {
-        return new AllergyDO
+        return new AllergyDAO
         {
             Id = domain.Id,
             PatientId = domain.PatientId,
@@ -79,7 +79,7 @@ public static class PatientsMapper
         };
     }
 
-    public static Allergy ToDomain(AllergyDO data)
+    public static Allergy ToDomain(AllergyDAO data)
     {
         return Allergy.Rehydrate(
             data.Id,

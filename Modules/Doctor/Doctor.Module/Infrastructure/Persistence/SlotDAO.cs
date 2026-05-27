@@ -4,24 +4,32 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Doctor.Module.Infrastructure.Persistence;
 
 [BsonIgnoreExtraElements]
-internal class SchedulePlanDO
+internal class SlotDAO
 {
     [BsonId]
     [BsonRepresentation(BsonType.String)]
     public Guid Id { get; set; }
 
+    [BsonElement("schedulePlanId")]
+    [BsonRepresentation(BsonType.String)]
+    public Guid SchedulePlanId { get; set; }
+
     [BsonElement("doctorId")]
     [BsonRepresentation(BsonType.String)]
     public Guid DoctorId { get; set; }
 
-    [BsonElement("weekStartDate")]
-    public DateTime WeekStartDate { get; set; }
+    [BsonElement("startTime")]
+    public DateTime StartTime { get; set; }
+
+    [BsonElement("duration")]
+    public int Duration { get; set; }
 
     [BsonElement("status")]
-    public string Status { get; set; } = "draft";
+    public string Status { get; set; } = "available";
 
-    [BsonElement("slots")]
-    public List<SlotDO> Slots { get; set; } = [];
+    [BsonElement("appointmentId")]
+    [BsonRepresentation(BsonType.String)]
+    public Guid? AppointmentId { get; set; }
 
     [BsonElement("createdAt")]
     public DateTime CreatedAt { get; set; }

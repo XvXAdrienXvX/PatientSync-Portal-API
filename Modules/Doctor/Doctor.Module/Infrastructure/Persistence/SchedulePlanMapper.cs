@@ -22,7 +22,7 @@ internal static class SchedulePlanMapper
         domain.CreatedAt,
         domain.UpdatedAt);
 
-    public static SlotDO ToDataObject(Slot domain) => new()
+    public static SlotDAO ToDataObject(Slot domain) => new()
     {
         Id = domain.Id,
         SchedulePlanId = domain.SchedulePlanId,
@@ -35,12 +35,12 @@ internal static class SchedulePlanMapper
         UpdatedAt = domain.UpdatedAt
     };
 
-    public static Slot ToDomain(SlotDO data) => Slot.Rehydrate(
+    public static Slot ToDomain(SlotDAO data) => Slot.Rehydrate(
         data.Id, data.SchedulePlanId, data.DoctorId,
         data.StartTime, data.Duration, data.Status,
         data.AppointmentId, data.CreatedAt, data.UpdatedAt);
 
-    public static SchedulePlanDO ToDataObject(SchedulePlan domain) => new()
+    public static SchedulePlanDAO ToDataObject(SchedulePlan domain) => new()
     {
         Id = domain.Id,
         DoctorId = domain.DoctorId,
@@ -51,7 +51,7 @@ internal static class SchedulePlanMapper
         UpdatedAt = domain.UpdatedAt
     };
 
-    public static SchedulePlan ToDomain(SchedulePlanDO data) => SchedulePlan.Rehydrate(
+    public static SchedulePlan ToDomain(SchedulePlanDAO data) => SchedulePlan.Rehydrate(
         data.Id, data.DoctorId, data.WeekStartDate,
         data.Status,
         data.Slots.Select(ToDomain).ToList(),
